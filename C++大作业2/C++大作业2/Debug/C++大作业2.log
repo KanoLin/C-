@@ -1,0 +1,17 @@
+﻿  TeacherFunction.cpp
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(30): warning C4018: “<”: 有符号/无符号不匹配
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(66): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(67): warning C4018: “<”: 有符号/无符号不匹配
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(68): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(165): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(166): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(252): warning C4018: “<”: 有符号/无符号不匹配
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(380): warning C4018: “<”: 有符号/无符号不匹配
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(128): warning C4018: “<”: 有符号/无符号不匹配
+  c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(161): note: 参见对正在编译的函数 模板 实例化“int Find<std::string>(std::vector<Student,std::allocator<_Ty>> &,T,T)”的引用
+          with
+          [
+              _Ty=Student,
+              T=std::string
+          ]
+  C++大作业2.vcxproj -> C:\PANPANPAN\_Program\C++大作业2\Debug\C++大作业2.exe
