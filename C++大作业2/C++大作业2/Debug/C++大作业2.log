@@ -5,8 +5,8 @@ c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(67): warni
 c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(68): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
 c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(165): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
 c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(166): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(252): warning C4018: “<”: 有符号/无符号不匹配
-c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(380): warning C4018: “<”: 有符号/无符号不匹配
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(253): warning C4018: “<”: 有符号/无符号不匹配
+c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(383): warning C4018: “<”: 有符号/无符号不匹配
 c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(128): warning C4018: “<”: 有符号/无符号不匹配
   c:\panpanpan\_program\c++大作业2\c++大作业2\teacherfunction.cpp(161): note: 参见对正在编译的函数 模板 实例化“int Find<std::string>(std::vector<Student,std::allocator<_Ty>> &,T,T)”的引用
           with

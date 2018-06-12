@@ -39,10 +39,10 @@ void Student::display(int n = 9) {
 
 //fileout用于文件输出
 void Student::fileout(fstream &f) {
-	f << Name << ' ' << ID << ' ' << ' ' << Rank << ' ' << Num;
+	f << ' ' << setw(8) << Name << ' ' << setw(8) << ID << ' ' << setw(8) << Rank << ' ' << setw(8) << Num;
 	for (int i = 1; i <= Num; ++i)
-		f << ' ' << Mark[i];
-	f << ' ' << Mark[0] << endl;
+		f << ' ' << setw(8) << Mark[i];
+	f << ' ' << setw(8) << Mark[0] << endl;
 }
 
 //get用于返回学生信息，动态联编使用重载返回不同值

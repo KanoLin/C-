@@ -245,7 +245,8 @@ void Delete(vector<Student> &t, vector<int> &del)
 	while (1)
 	{
 		cout << "确认删除" << del.size() << "条记录？(y/n)" << endl << ">>>";
-		if ((s.size() > 1) || (s[0] != 'y') || (s[0] != 'n')) { cout << "请输入y/n！！" << endl; continue; }
+		cin >> s;
+		if ((s.size() > 1) || (s[0] != 'y') || (s[0] != 'n')) { cout << "请输入(y/n)！！" << endl; continue; }
 		else break;
 	}
 	if (s[0] == 'n') { cout << "取消删除！" << endl; return; }
@@ -356,6 +357,7 @@ void ReadFileUI(vector<Student> &t, fstream &inFile, string &inFileName)
 		int rank, num;
 		double ary[10], sum;
 		inFile >> name >> id >> rank >> num;
+		if (id == "")break;
 		for (int i = 1; i <= num; ++i)inFile >> ary[i];
 		t.push_back(Student(name, id, ary, num));
 		inFile >> sum;
@@ -373,10 +375,11 @@ void SaveFileUI(vector<Student> &t, fstream &outFile, string &outFileName)
 	if (isNULL(t))return;
 	if (!outFile.is_open()) { cout << "文件未打开！" << endl; return; }
 	cout << ">您已选择 文件存储" << endl;
-	outFile << "姓名   " << "学号      " << "名次   " << "科目数 ";
+	outFile << ' ' << setw(8) << constName[0] << ' ' << setw(8) << constName[1] << ' ' << setw(8) << constName[2] << ' ';
+	outFile << setw(8) << constName[3] << ' ';
 	for (int i = 1; i <= (double)t[0].get(4); ++i)
-		outFile << "成绩" << i << " ";
-	outFile << "总成绩" << endl;
+		outFile << setw(7) << "成绩" << i << " ";
+	outFile << setw(8) << "总分" << endl;
 	for (int i = 0; i < t.size(); ++i)
 		t[i].fileout(outFile);
 	cout << "记录已保存于" << outFileName << endl;
@@ -462,7 +465,6 @@ void UI()
 	displayTable();
 	while (cin >> act)
 	{
-		//char select = act[0];
 		int select = -1;
 		stringstream ss;
 		ss << act; ss >> select;
@@ -479,7 +481,23 @@ void UI()
 		case 8:ChangeUI(stu); break;
 		case 9:FindUI(stu); break;
 		case 10:SortUI(stu); break;
-		case 0:cout << "再见！" << endl; inFile.close(); outFile.close(); stu.clear(); del.clear(); return; break;
+		case 0:
+			if (stu.empty()) { cout << "再见！" << endl; inFile.close(); outFile.close(); stu.clear(); del.clear(); return; }
+			while(1)
+			{ 
+				int t = 0;
+				cout << "是否保存或取消？（y/n/0）" << endl << ">>>";
+				char y;
+				cin >> y;
+				switch (y)
+				{
+				case'y':SaveFileUI(stu, outFile, outFileName); cout << "再见！" << endl; inFile.close(); outFile.close(); stu.clear(); del.clear(); return;
+				case'n':cout << "再见！" << endl; inFile.close(); outFile.close(); stu.clear(); del.clear(); return;
+				case'0':t = 1; break;
+				default:cout << "请输入正确序号！！" << endl; break;
+				}
+				if (t)break;
+			}break;			
 		default:cout << "请输入正确序号！！" << endl; displayTable(); continue; break;
 		}
 		displayTable();
