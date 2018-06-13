@@ -8,7 +8,7 @@ string inFileName = "studentin.txt";//用于存储默认读取地址
 string outFileName = "studentout.txt";//用于存储默认存储地址
 int Size = 8;//用于存储学号位所占长度，便于格式化输出
 
-Teacher::Teacher(){}
+Teacher::Teacher() {}
 Teacher::Teacher(string s = "", string a = "") :Student(s, a) {}
 
 //Student::change用于改变学生信息
@@ -70,7 +70,7 @@ void ShowTableUI(vector<Student>& t)
 	cout << ">您已选择 显示记录" << endl;
 	showTableTitle(t[0].get(4));
 	for (int i = 0; i < t.size(); ++i)
-		t[i].display(t[0].get(4),Size);
+		t[i].display(t[0].get(4), Size);
 }
 
 /*----------记录排序----------*/
@@ -168,7 +168,7 @@ int FindUI0(vector<Student> &t)
 	if (pos == -1) { cout << "记录不存在！" << endl; return -1; }
 	cout << "已找到：" << endl;
 	showTableTitle(t[pos].get(4));
-	t[pos].display(t[pos].get(4),Size);
+	t[pos].display(t[pos].get(4), Size);
 	return pos;
 }
 //FindUI----查询记录界面
@@ -194,9 +194,9 @@ void ChangeUI(vector<Student> &t)
 	while (cin >> act)
 	{
 		if (act[0] == '0')return;
-		if (act.size() > 1 || (act[0] == '3') || (act[0] > '9') || (act[0] < '1')) {
+		if (act.size() > 1 || (act[0] == '3') || (act[0] > '9') || (act[0] < '1') || (act[0] - 48 - 3 > t[pos].get(4))) {
 			cout << "请输入正确序号！！" << endl;
-			cout << "|1.姓名|2.学号|4~9.成绩|0.退出功能|" << endl << ">>>";
+			cout << "|1.姓名|2.学号|4~9.成绩1~6|0.退出功能|" << endl << ">>>";
 			continue;
 		}
 		else break;
@@ -214,8 +214,8 @@ void ChangeUI(vector<Student> &t)
 		ss.clear();
 	}
 	act0 = (int)act[0] - 48;
-	if (act0 < 4)t[pos].change(s,act0);
-	else t[pos].change(tt, 5, act0);
+	if (act0 < 4)t[pos].change(s, act0 - 1);
+	else t[pos].change(tt, 5, act0 - 3);
 	fixRank(t);
 	cout << "修改完成！";
 }
@@ -386,7 +386,7 @@ void SaveFileUI(vector<Student> &t, fstream &outFile, string &outFileName)
 		outFile << setw(7) << "成绩" << i << " ";
 	outFile << setw(8) << "总分" << endl;
 	for (int i = 0; i < t.size(); ++i)
-		t[i].fileout(outFile,Size);
+		t[i].fileout(outFile, Size);
 	cout << "记录已保存于" << outFileName << endl;
 }
 
@@ -488,21 +488,25 @@ void UI()
 		case 10:SortUI(stu); break;
 		case 0:
 			if (stu.empty()) { cout << "再见！" << endl; inFile.close(); outFile.close(); stu.clear(); del.clear(); return; }
-			while(1)
-			{ 
+			while (1)
+			{
 				int t = 0;
 				cout << "是否保存或取消？（y/n/0）" << endl << ">>>";
 				char y;
 				cin >> y;
 				switch (y)
 				{
-				case'y':SaveFileUI(stu, outFile, outFileName); cout << "再见！" << endl; inFile.close(); outFile.close(); stu.clear(); del.clear(); return;
+				case'y':
+					SaveFileUI(stu, outFile, outFileName);
+					if (!outFile.is_open()) { t = 1; break; }
+					cout << "再见！" << endl; inFile.close();
+					outFile.close(); stu.clear(); del.clear(); return;
 				case'n':cout << "再见！" << endl; inFile.close(); outFile.close(); stu.clear(); del.clear(); return;
 				case'0':t = 1; break;
 				default:cout << "请输入正确序号！！" << endl; break;
 				}
 				if (t)break;
-			}break;			
+			}break;
 		default:cout << "请输入正确序号！！" << endl; displayTable(); continue; break;
 		}
 		displayTable();
