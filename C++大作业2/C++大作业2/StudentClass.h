@@ -20,8 +20,8 @@ public:
 	template <typename T>
 	void change(T, int, int=-1);
 	void change(double, int, int=-1);
-	void display(int);
-	void fileout(fstream &);
+	void display(int,int);
+	void fileout(fstream &,int);
 	string get(string);
 	double get(int);
 	template <typename T>friend int Find(const vector<Student> &, T, T);

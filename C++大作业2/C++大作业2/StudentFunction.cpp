@@ -29,8 +29,8 @@ void Student::sum()
 }
 
 //display用于在屏幕上显示记录
-void Student::display(int n = 9) {
-	cout << '*' << setw(8) << Name << '*' << setw(8) << ID << '*' << setw(8) << Rank << '*';
+void Student::display(int n = 9,int size=8) {
+	cout << '*' << setw(8) << Name << '*' << setw(size) << ID << '*' << setw(8) << Rank << '*';
 	cout << setw(8) << n << '*';
 	for (int i = 1; i <= n; ++i)
 		cout << setw(8) << Mark[i] << '*';
@@ -38,8 +38,8 @@ void Student::display(int n = 9) {
 }
 
 //fileout用于文件输出
-void Student::fileout(fstream &f) {
-	f << ' ' << setw(8) << Name << ' ' << setw(8) << ID << ' ' << setw(8) << Rank << ' ' << setw(8) << Num;
+void Student::fileout(fstream &f,int size=8) {
+	f << ' ' << setw(8) << Name << ' ' << setw(size) << ID << ' ' << setw(8) << Rank << ' ' << setw(8) << Num;
 	for (int i = 1; i <= Num; ++i)
 		f << ' ' << setw(8) << Mark[i];
 	f << ' ' << setw(8) << Mark[0] << endl;

@@ -6,6 +6,7 @@ vector<int> del;//del向量用于标记stu向量组中需要删除的对象
 fstream outFile, inFile;//读取文件和保存文件的文件对象
 string inFileName = "studentin.txt";//用于存储默认读取地址
 string outFileName = "studentout.txt";//用于存储默认存储地址
+int Size = 8;//用于存储学号位所占长度，便于格式化输出
 
 Teacher::Teacher(){}
 Teacher::Teacher(string s = "", string a = "") :Student(s, a) {}
@@ -27,8 +28,12 @@ void Student::change(double s, int act, int i) {
 void fixRank(vector<Student> &t)
 {
 	sort(t.begin(), t.end(), compareSum);
+	Size = 8;
 	for (int i = 0; i < t.size(); ++i)
+	{
 		t[i].Rank = i + 1;
+		Size = (Size < t[i].get("2").size()) ? t[i].get("2").size() : Size;
+	}
 }
 
 //Teacher::start用于开启运行界面
@@ -52,7 +57,7 @@ bool isNULL(vector<Student> &t)
 //showTableTitle用于显示表头
 void showTableTitle(int n = 9)
 {
-	cout << '*' << setw(8) << constName[0] << '*' << setw(8) << constName[1] << '*' << setw(8) << constName[2] << '*';
+	cout << '*' << setw(8) << constName[0] << '*' << setw(Size) << constName[1] << '*' << setw(8) << constName[2] << '*';
 	cout << setw(8) << constName[3] << '*';
 	for (int i = 1; i <= n; ++i)
 		cout << setw(7) << "成绩" << i << '*';
@@ -65,7 +70,7 @@ void ShowTableUI(vector<Student>& t)
 	cout << ">您已选择 显示记录" << endl;
 	showTableTitle(t[0].get(4));
 	for (int i = 0; i < t.size(); ++i)
-		t[i].display(t[0].get(4));
+		t[i].display(t[0].get(4),Size);
 }
 
 /*----------记录排序----------*/
@@ -163,7 +168,7 @@ int FindUI0(vector<Student> &t)
 	if (pos == -1) { cout << "记录不存在！" << endl; return -1; }
 	cout << "已找到：" << endl;
 	showTableTitle(t[pos].get(4));
-	t[pos].display(t[pos].get(4));
+	t[pos].display(t[pos].get(4),Size);
 	return pos;
 }
 //FindUI----查询记录界面
@@ -381,7 +386,7 @@ void SaveFileUI(vector<Student> &t, fstream &outFile, string &outFileName)
 		outFile << setw(7) << "成绩" << i << " ";
 	outFile << setw(8) << "总分" << endl;
 	for (int i = 0; i < t.size(); ++i)
-		t[i].fileout(outFile);
+		t[i].fileout(outFile,Size);
 	cout << "记录已保存于" << outFileName << endl;
 }
 
