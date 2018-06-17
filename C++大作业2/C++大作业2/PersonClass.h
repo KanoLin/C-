@@ -20,7 +20,7 @@ using namespace std;
 class Person
 {
 protected:
-	string Name, ID;
+	string Name, ID;//Name姓名 ID学号
 public:
 	Person(string, string);
 };
